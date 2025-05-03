@@ -3,6 +3,7 @@ import os
 
 from botato.client import BotatoClient
 from botato.intents import Intents
+from botato.models.message import Message
 from loguru import logger
 
 from dotenv import load_dotenv
@@ -32,15 +33,12 @@ async def on_ready(data):
     
     
 @bot.event
-async def on_message_create(data):
+async def on_message_create(message: Message):
     """
     Triggered when a message is sent in a text channel.
     """
-    author = data["author"]["username"]
-    content = data["content"]
-    logger.info(f"Message from {author}: {content}")
+    logger.info(f"Message from {message.author.username}: {message.content}")
     
-
 
 async def main():
     try:
