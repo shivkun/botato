@@ -3,6 +3,7 @@ import json
 import time
 import websockets
 from typing import Callable, Awaitable
+from botato.intents import Intents
 
 from loguru import logger
 
@@ -19,16 +20,22 @@ class GatewayConnection:
     - Receiving and parsing events
     """
     
-    def __init__(self, token: str, event_callback: Callable[[str, dict], Awaitable[None]]) -> None:
+    def __init__(self, 
+                 token: str, 
+                 event_callback: Callable[[str, dict], Awaitable[None]],
+                 intents: Intents
+    ) -> None:
         """
         Initialize the GatewayConnection.
 
         Args:
             token (str): Bot token for authentication.
             event_callback (Callable[[str, dict], Awaitable[None]]): Function to call with every event received.
+            intents (Intents): Intents for the bot.
         """
         self.token = token
         self.event_callback = event_callback
+        self.intents = intents
         
         self._ws: websockets.WebSocketClientProtocol | None = None
         self._heartbeat_interval: float = 0
@@ -44,15 +51,13 @@ class GatewayConnection:
         """
         logger.info("Connecting to Discord Gateway...")
         
-        headers = {
-            "User-Agent": "Botato (https://github.com/shivkun/botato, 0.1.0)",
-        }
-        
         self._ws = await websockets.connect(
             GATEWAY_URL,
-            extra_headers=headers,
-            open_timeout=10,
-            close_timeout=5
+            open_timeout=20,
+            close_timeout=5,
+            additional_headers=[
+                ("User-Agent", "Botato (https://github.com/shivkun/botato, 0.1.0)")
+            ]
         )
         
         async for message in self._ws:
@@ -109,7 +114,7 @@ class GatewayConnection:
             "op": 2,
             "d": {
                 "token": self.token,
-                "intents": 513, # Guild messages + DMs // Temporary
+                "intents": self.intents.value,
                 "properties": {
                     "os": "linux",
                     "browser": "botato",

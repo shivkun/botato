@@ -2,6 +2,7 @@ import asyncio
 import os
 
 from botato.client import BotatoClient
+from botato.intents import Intents
 from loguru import logger
 
 from dotenv import load_dotenv
@@ -15,7 +16,11 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 if not TOKEN:
     raise RuntimeError("You must set the DISCORD_TOKEN environment variable.")
 
-bot = BotatoClient(token=TOKEN)
+# Setup intents
+intents = Intents.default()
+logger.info(f"Using intents: {intents.describe()}")
+
+bot = BotatoClient(token=TOKEN, intents=intents)
 
 
 @bot.event

@@ -6,6 +6,7 @@ from loguru import logger
 
 from botato.gateway.connection import GatewayConnection
 from botato.http.client import HTTPClient
+from botato.intents import Intents
 
 T = TypeVar('T', bound=Callable[..., Awaitable[None]])
 
@@ -18,14 +19,16 @@ class BotatoClient:
     and user-defined event registration and dispatching.
     """
     
-    def __init__(self, token: str) -> None:
+    def __init__(self, token: str, intents: Intents) -> None:
         """
         Initialize the BotatoClient with the provided token.
 
         Args:
             token (str): Discord bot token used for authentication.
+            intents (Intents): The intents for the bot's operations.
         """
         self.token: str = token.strip()
+        self.intents: Intents = intents
         self.gateway: GatewayConnection | None = None
         self.http: HTTPClient | None = None
         self._event_handlers: Dict[str, List[T]] = {}
@@ -39,7 +42,7 @@ class BotatoClient:
         logger.info("Starting BotatoClient connection...")
         
         self.http = HTTPClient(self.token)
-        self.gateway = GatewayConnection(self.token, self._handle_event)
+        self.gateway = GatewayConnection(self.token, self._handle_event, self.intents)
         await self.gateway.connect()
         
     def event(self, func: T) -> T:
