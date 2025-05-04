@@ -97,6 +97,8 @@ poetry run pytest
 Register events with decorators:
 
 ```python
+from botato.models.message import Message
+
 @bot.event
 async def on_message_create(message: Message):
     print(f"{message.author.username}: {message.content}")
