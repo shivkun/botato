@@ -18,6 +18,11 @@ classifiers = [
     "Development Status :: 3 - Alpha"
 ]
 
+[tool.poetry.urls]
+homepage = "https://github.com/shivkun/botato"
+documentation = "https://shivkun.github.io/botato"
+issues = "https://github.com/shivkun/botato/issues"
+
 [tool.poetry.dependencies]
 python = "^3.13"
 aiohttp = "^3.11.18"
