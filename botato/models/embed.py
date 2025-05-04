@@ -1,23 +1,21 @@
-from pydantic import BaseModel, ConfigDict
+from botato.models.base import BotatoBase
 from typing import Optional, List
 
 
-class EmbedField(BaseModel):
+class EmbedField(BotatoBase):
     """
     Represents a field in an embed.
     """
-    model_config = ConfigDict(extra="allow")
     
     name: str
     value: str
     inline: Optional[bool] = None
         
 
-class EmbedAuthor(BaseModel):
+class EmbedAuthor(BotatoBase):
     """
     Represents the author of an embed.
     """
-    model_config = ConfigDict(extra="allow")
     
     name: str
     url: Optional[str] = None
@@ -25,21 +23,19 @@ class EmbedAuthor(BaseModel):
     proxy_icon_url: Optional[str] = None
         
 
-class EmbedProvider(BaseModel):
+class EmbedProvider(BotatoBase):
     """
     Represents a provider of an embed.
     """
-    model_config = ConfigDict(extra="allow")
     
     name: Optional[str] = None
     url: Optional[str] = None
         
 
-class EmbedVideo(BaseModel):
+class EmbedVideo(BotatoBase):
     """
     Represents a video in an embed.
     """
-    model_config = ConfigDict(extra="allow")
     
     url: Optional[str] = None
     proxy_url: Optional[str] = None
@@ -47,11 +43,10 @@ class EmbedVideo(BaseModel):
     width: Optional[int] = None
         
         
-class EmbedImage(BaseModel):
+class EmbedImage(BotatoBase):
     """
     Represents an image in an embed.
     """
-    model_config = ConfigDict(extra="allow")
     
     url: Optional[str] = None
     proxy_url: Optional[str] = None
@@ -59,11 +54,10 @@ class EmbedImage(BaseModel):
     width: Optional[int] = None
         
         
-class EmbedThumbnail(BaseModel):
+class EmbedThumbnail(BotatoBase):
     """
     Represents a thumbnail in an embed.
     """
-    model_config = ConfigDict(extra="allow")
     
     url: Optional[str] = None
     proxy_url: Optional[str] = None
@@ -71,25 +65,23 @@ class EmbedThumbnail(BaseModel):
     width: Optional[int] = None
         
         
-class EmbedFooter(BaseModel):
+class EmbedFooter(BotatoBase):
     """
     Represents a footer in an embed.
     """
-    model_config = ConfigDict(extra="allow")
     
     text: str
     icon_url: Optional[str] = None
     proxy_icon_url: Optional[str] = None
         
     
-class Embed(BaseModel):
+class Embed(BotatoBase):
     """
     Represents an embed in a Discord message.
     
     Documentation:
     https://discord.com/developers/docs/resources/message#embed-object
     """
-    model_config = ConfigDict(extra="allow")
     
     title: Optional[str] = None
     type: Optional[str] = None

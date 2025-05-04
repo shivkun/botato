@@ -1,22 +1,20 @@
-from pydantic import BaseModel, ConfigDict
+from botato.models.base import BotatoBase
 from typing import Optional, List
 from botato.models.emoji import Emoji
 
-class ReactionCountDetails(BaseModel):
+class ReactionCountDetails(BotatoBase):
     """
     Represents the details of a reaction count.
     """
-    model_config = ConfigDict(extra="allow")
     
     burst: int
     normal: int
     
 
-class Reaction(BaseModel):
+class Reaction(BotatoBase):
     """
     Represents a reaction to a message.
     """
-    model_config = ConfigDict(extra="allow")
     
     count: int
     count_details: Optional[ReactionCountDetails] = None

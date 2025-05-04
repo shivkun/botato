@@ -1,27 +1,26 @@
-from pydantic import BaseModel, ConfigDict
+from botato.models.base import BotatoBase
+from botato.models.snowflake import Snowflake
 from typing import Optional
 
 
-class AvatarDecorationData(BaseModel):
+class AvatarDecorationData(BotatoBase):
     """
     Represents the avatar decoration data for a Discord user.
     """
-    model_config = ConfigDict(extra="allow")
     
     asset: str
     sku_id: str
 
 
-class User(BaseModel):
+class User(BotatoBase):
     """
     Represents a Discord user.
 
     Documentation:
     https://discord.com/developers/docs/resources/user#user-object
     """
-    model_config = ConfigDict(extra="allow")
     
-    id: str
+    id: Snowflake
     username: str
     discriminator: str # Note: not used for users anymore, only for bots
     global_name: str | None = None

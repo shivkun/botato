@@ -1,16 +1,15 @@
-from pydantic import BaseModel, ConfigDict
+from botato.models.base import BotatoBase
 from typing import Optional, List
 from botato.models.user import User
 
 
-class Channel(BaseModel):
+class Channel(BotatoBase):
     """
     Represents a Discord channel.
 
     Documentation:
     https://discord.com/developers/docs/resources/channel#channels-resource
     """
-    model_config = ConfigDict(extra="allow")
     
     id: str
     type: int
@@ -48,14 +47,13 @@ class Channel(BaseModel):
     default_sort_order: Optional[int] = None
     default_forum_layout: Optional[int] = None
         
-class ChannelMention(BaseModel):
+class ChannelMention(BotatoBase):
     """
     Represents a mention of a channel in a Discord message.
 
     Documentation:
     https://discord.com/developers/docs/resources/message#channel-mention-object
     """
-    model_config = ConfigDict(extra="allow")
     
     id: str
     guild_id: str
