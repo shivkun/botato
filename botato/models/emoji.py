@@ -1,22 +1,22 @@
-from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional, List
+
+from botato.models.base import BotatoBase, Field
+from botato.models.snowflake import Snowflake
 from botato.models.user import User
-from botato.models.role import Role
 
 
-class Emoji(BaseModel):
+class Emoji(BotatoBase):
     """
     Represents a Discord emoji.
     
     Documentation:
     https://discord.com/developers/docs/resources/emoji#emoji-object
     """
-    model_config = ConfigDict(extra="allow")
     
-    id: Optional[str] = None
+    id: Optional[Snowflake] = None
     name: Optional[str] = None
-    roles: List[Role] = Field(default_factory=list)
-    user: Optional[User] = None
+    roles: List[Snowflake] = Field(default_factory=list)
+    user: User
     require_colons: bool = False
     managed: bool = False
     animated: bool = False

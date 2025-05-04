@@ -1,14 +1,13 @@
-from pydantic import BaseModel, ConfigDict
-from typing import Optional
+from botato.models.base import BotatoBase
+from botato.models.snowflake import Snowflake
 
 
-class Role(BaseModel):
+class Role(BotatoBase):
     """
     Represents a Discord role.
     """
-    model_config = ConfigDict(extra="allow")
     
-    id: str
+    id: Snowflake
     name: str
     color: int
     hoist: bool
