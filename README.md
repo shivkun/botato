@@ -98,8 +98,8 @@ Register events with decorators:
 
 ```python
 @bot.event
-async def on_message_create(data):
-    print(data["content"])
+async def on_message_create(message: Message):
+    print(f"{message.author.username}: {message.content}")
 ```
 
 ## 🚀 Deployment <a name = "deployment"></a>
