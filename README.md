@@ -55,7 +55,21 @@ These instructions will get you a copy of the project up and running locally for
 Clone the repo and install dependencies:
 
 ```bash
+git clone https://github.com/shivkun/botato.git && cd botato
 poetry install
+```
+
+*Botato is also available on PyPI and is updated with every release. You can install it using `pip`, `pipx`, or `poetry`.*
+
+> [!NOTE]
+> - `pip`is the standard Python package manager and is suitable for installing packages globally or in virtual environments.
+> - `pipx` is designed for installing and running Python applications in isolated environments, making it idea for CLI tools.
+> - `poetry` is a dependency management and packaging tool that creates virtual environments and manages dependencies for your projects.
+
+```bash
+pip install botato
+pipx install botato
+poetry add botato
 ```
 
 Activate the environment:
