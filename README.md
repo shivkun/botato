@@ -55,7 +55,16 @@ These instructions will get you a copy of the project up and running locally for
 Clone the repo and install dependencies:
 
 ```bash
+git clone https://github.com/shivkun/botato.git && cd botato
 poetry install
+```
+
+*Botato is also available on PyPI and is updated with every release. You can install it using `pip`, `pipx`, or `poetry`.*
+
+```bash
+pip install botato
+pipx install botato
+poetry add botato
 ```
 
 Activate the environment:
