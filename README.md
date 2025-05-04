@@ -61,7 +61,7 @@ poetry install
 Activate the environment:
 
 ```bash
-poetry env activate $(poetry env list --full-path | head -n 1)
+poetry env activate
 ```
 
 Run the example bot:
