@@ -1,10 +1,56 @@
-# Ignore Python bytecode files
-*.pyc
+# Byte-compiled / cache
 __pycache__/
-# Ignore environment variables
-.env
-# Ignore .DS_Store files
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.so
+*.egg-info/
+.eggs/
+*.manifest
+*.spec
+
+# Poetry virtual environments (if using .venv)
+.venv/
+env/
+venv/
+
+# pytest cache
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+*.log
+
+# MyPy / Ruff / Coverage
+.mypy_cache/
+.cache/
+.dmypy.json
+*.py,cover
+.tox/
+
+# Jupyter / IPython
+.ipynb_checkpoints/
+.profile/
+
+# Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# macOS/Linux
 .DS_Store
-# Ignore build files
+Thumbs.db
+*.swp
+
+# Build
 build/
 dist/
+
+# Poetry
+poetry.lock
+
+# Environment variables
+.env
+.env.*
