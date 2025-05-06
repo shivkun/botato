@@ -39,7 +39,7 @@ class Role(BotatoBase):
     flags: int
     
     # Optional, non-nullable
-    tags: Optional[List[RoleTag]] = Field(default={})
+    tags: Optional[List[RoleTag]] = Field(default=[])
     
     # Optional, nullable (can be None)
     icon: Optional[str] = Field(default=None)
