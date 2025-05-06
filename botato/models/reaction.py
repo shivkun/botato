@@ -1,6 +1,7 @@
 from botato.models.base import BotatoBase
 from typing import Optional, List
 from botato.models.emoji import Emoji
+from botato.types.hex_color import HexColor
 
 class ReactionCountDetails(BotatoBase):
     """
@@ -17,8 +18,8 @@ class Reaction(BotatoBase):
     """
     
     count: int
-    count_details: Optional[ReactionCountDetails] = None
+    count_details: ReactionCountDetails
     me: bool
     me_burst: bool
     emoji: Emoji
-    burst_colors: Optional[List[str]] = None
+    burst_colors: List[HexColor]
